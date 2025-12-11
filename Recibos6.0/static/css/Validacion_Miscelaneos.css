@@ -1,0 +1,308 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b71c1c;
+    color: white;
+    padding: 10px 20px;
+}
+
+.header .logo {
+    width: 100px;
+    height: auto;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header-buttons .btn-back,
+.header-buttons .btn-save {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.header-buttons .btn-back:hover,
+.header-buttons .btn-save:hover {
+    background-color: #555;
+}
+
+/* Main Content Styles */
+.main-content {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Left Panel */
+.left-panel {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.left-panel h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.box-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.box-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+/* Sombreado al pasar el mouse por encima de un elemento de la lista de cajas */
+.box-list .filter-item:hover {
+    background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+    cursor: pointer; /* Cambia el cursor para indicar que es clickeable */
+}
+
+/* Estilo para el elemento seleccionado */
+.box-list .filter-item.selected-item {
+    background-color: #ffe082; /* Color de fondo para el elemento seleccionado */
+    font-weight: bold; /* Opcional: resaltar el texto */
+}
+
+/* Center Panel */
+.center-panel {
+    flex: 2;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.center-panel h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.misc-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.misc-table th,
+.misc-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.misc-table thead th {
+    position: sticky; /* Hace que los encabezados sean fijos */
+    top: 0; /* Posición fija en la parte superior */
+    background-color: #b71c1c; /* Color de fondo para los encabezados */
+    color: white; /* Color del texto */
+    z-index: 1; /* Asegura que los encabezados estén por encima del contenido */
+}
+
+.misc-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Sombreado al pasar el mouse por encima de una fila */
+.misc-table tr:hover {
+    background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+    cursor: pointer; /* Cambia el cursor para indicar que es clickeable */
+}
+
+/* Estilo para la fila seleccionada */
+.misc-table tr.selected-row {
+    background-color: #ffe082; /* Color de fondo para la fila seleccionada */
+}
+
+/* Right Panel */
+.right-panel {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Habilitar scroll vertical */
+    max-height: 730px; /* Altura máxima del contenedor */
+    border: 1px solid #ddd; /* Opcional: agregar un borde */
+    border-radius: 4px; /* Opcional: bordes redondeados */
+}
+
+.right-panel h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.scan-section p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.scan-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.scan-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.scan-field label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.scan-value {
+    font-size: 1rem;
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 4px;
+    color: #333;
+    text-align: left;
+}
+
+/* Estilo para la tabla de Items a Escanear */
+.scan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.scan-table th, .scan-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+}
+
+.scan-table th {
+    background-color: #b71c1c;
+    color: white;
+    font-weight: bold;
+}
+
+.scan-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.scan-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.qr-image {
+    width: 30px;
+    height: auto;
+}
+
+/* Estilo general para tablas */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table th {
+    background-color: #b71c1c;
+    color: white;
+    text-align: center;
+}
+
+/* Estilo para los elementos de la lista de cajas */
+.filter-item {
+    cursor: pointer; /* Cambia el cursor para indicar que es clickeable */
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 1rem;
+    color: #333; /* Color del texto */
+    text-decoration: none; /* Elimina el subrayado */
+}
+
+/* Estilo para la imagen truck.png */
+.image-truck {
+    display: block;
+    margin: 0 auto 10px; /* Centra la imagen y agrega espacio debajo */
+    max-width: 80px; /* Ajusta el tamaño máximo de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+/* Estilo para la imagen box.png */
+.image-box {
+    display: block;
+    margin: 0 auto 10px; /* Centra la imagen y agrega espacio debajo */
+    max-width: 50px; /* Ajusta el tamaño máximo de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+/* Estilo para la imagen scanner.png */
+.image-scanner {
+    display: block;
+    margin: 0 auto 10px; /* Centra la imagen y agrega espacio debajo */
+    max-width: 80px; /* Ajusta el tamaño máximo de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+/* Contenedor con scroll para tablas */
+.table-container {
+    max-height: 550px; /* Altura máxima del contenedor */
+    overflow-y: auto; /* Habilitar scroll vertical */
+    border: 1px solid #ddd; /* Opcional: agregar un borde */
+    border-radius: 4px; /* Opcional: bordes redondeados */
+}
+
+/* Mantener el ancho de las tablas */
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}

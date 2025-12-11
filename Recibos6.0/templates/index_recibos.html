@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="split-screen">
+        <!-- Sección de la imagen -->
+        <div class="image-section">
+          <img src="{{ url_for('static', filename='images/FondoLogin.png') }}" alt="Imagen de fondo">
+        </div>
+
+        <!-- Sección del contenido -->
+        <div class="content-section">
+            <div class="container">
+                <!-- Header -->
+                <header class="header">
+                    <img src="{{ url_for('static', filename='images/LogoDX-MXA2624.png') }}" alt="Logo" class="logo">
+                    <h1>Recibos - Misceláneos</h1>
+                </header>
+
+                <!-- Main Content -->
+                <main class="main-content">
+                    <p class="welcome-text">Gestiona tus recibos de manera sencilla y eficiente.</p>
+                    <a href="{{ url_for('login') }}" class="btn-primary">Iniciar Sesión</a>
+                </main>
+
+                <!-- Información adicional -->
+                <section class="info-section">
+                    <h2>¿Qué puedes hacer aquí?</h2>
+                    <ul class="info-list">
+                        <li>✔ Registrar y gestionar recibos de misceláneos.</li>
+                        <li>✔ Validar la recepción de materiales.</li>
+                        <li>✔ Confirmar la entrega de materiales a los usuarios.</li>
+                        <li>✔ Acceder a reportes y estadísticas.</li>
+                    </ul>
+                </section>
+
+                <!-- Footer -->
+                <footer class="footer">
+                    <p>&copy; MTS DX</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

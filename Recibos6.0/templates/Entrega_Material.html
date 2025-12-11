@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrega de Material</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Entrega_Material.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="{{ url_for('static', filename='images/LogoDX-MXA2624.png') }}" alt="Logo DX" class="logo">
+            <h1>Entrega de Pallet</h1>
+            <div class="header-buttons">
+                <a href="{{ url_for('gestion') }}"><button class="btn-back">Regresar</button></a>
+                <button class="btn-save">Guardar</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Solicitudes por entregar -->
+            <section class="requests-section">
+                <h2>Solicitudes por entregar: 3</h2>
+                <table class="requests-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha de Solicitud</th>
+                            <th>Pallet Solicitado</th>
+                            <th>Estatus</th>
+                            <th>Turno Requerido</th>
+                            <th>Prioridad</th>
+                            <th>Fecha Requerida</th>
+                            <th>Días Pendiente</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>4</td>
+                            <td>22/02/2025</td>
+                            <td>MXXZP14</td>
+                            <td>Pendiente Entrega</td>
+                            <td>T2</td>
+                            <td>Sí</td>
+                            <td>28/02/2025</td>
+                            <td>-262</td>
+                            <td><button class="btn-action">></button></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>20/02/2025</td>
+                            <td>MXXAMAA</td>
+                            <td>Pendiente Entrega</td>
+                            <td>T1</td>
+                            <td>No</td>
+                            <td>25/02/2025</td>
+                            <td>-265</td>
+                            <td><button class="btn-action">></button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>21/02/2025</td>
+                            <td>MXXA810</td>
+                            <td>Pendiente Entrega</td>
+                            <td>T3</td>
+                            <td>No</td>
+                            <td>27/02/2025</td>
+                            <td>-263</td>
+                            <td><button class="btn-action">></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Ubicaciones disponibles -->
+            <section class="locations-section">
+                <div class="scan-case">
+                    <h3>Escanea el CaseMark a Ubicar</h3>
+                    <div class="scan-box">
+                        <img src="{{ url_for('static', filename='images/scan-icon.png') }}" alt="Scan Icon">
+                        <button class="btn-scan">Case Mark Escaneado</button>
+                    </div>
+                </div>
+                <div class="locations">
+                    <h3>Ubicaciones Disponibles</h3>
+                    <div class="locations-grid">
+                        <button class="location available">A-L1-E1</button>
+                        <button class="location unavailable">A-L1-E2</button>
+                        <button class="location available">A-L1-E3</button>
+                        <button class="location unavailable">A-L1-E4</button>
+                        <button class="location available">A-L1-E5</button>
+                        <!-- Add more locations as needed -->
+                    </div>
+                </div>
+                <div class="scan-location">
+                    <h3>Escanea la Ubicación</h3>
+                    <div class="scan-box">
+                        <img src="{{ url_for('static', filename='images/location-icon.png') }}" alt="Location Icon">
+                        <button class="btn-scan">Ubicación a Escanear</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

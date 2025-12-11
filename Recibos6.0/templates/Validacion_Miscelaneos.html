@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Misceláneos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Validacion_Miscelaneos.css') }}"> 
+    <script src="{{ url_for('static', filename='js/zxing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Validacion_Miscelaneos.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <a href="{{ url_for('gestion') }}"><img src="{{ url_for('static', filename='images/LogoDX-MXA2624.png') }}" alt="Logo DX" class="logo"></a>
+            <h1>Validación de Misceláneos</h1>
+            <div class="header-buttons">
+                <a href="{{ url_for('gestion') }}"><button class="btn-back">Regresar</button></a>
+                <button class="btn-save">Guardar</button>
+                <a href="{{ url_for('ver_escaneos') }}"><button class="btn-save">Ver Escaneos</button></a>
+            </div>
+        </header>
+
+        <!-- File Upload Section -->
+        <section class="upload-section">
+            <h2>Subir Archivo CSV</h2>
+            <form action="{{ url_for('Validacion_Miscelaneos') }}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".csv, .xls, .xlsx" required>
+                <button type="submit" class="btn-upload">Subir Archivo</button>
+            </form>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Panel -->
+            <div class="left-panel">
+                <img src="{{ url_for('static', filename='images/truck.png') }}" alt="Truck" class="image-truck">
+                <h2>Cajas: {{ cajas|length }}</h2>
+                <ul class="box-list">
+                    {% for caja in cajas %}
+                    <div class="filter-item" data-caja="{{ caja }}">
+                        {{ caja }}
+                    </div>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Center Panel -->
+            <div class="center-panel">
+                <img src="{{ url_for('static', filename='images/box.png') }}" alt="Box" class="image-box">
+                <h2 id="selected-box">Misceláneos de la caja:</h2>
+                <p id="sl-por-revisar">SLs Por Revisar: 0</p>
+                
+                <div class="table-container">
+                    <table class="misc-table">
+                        <thead>
+                            <tr>
+                                <th>Caja</th>
+                                <th>Factura</th>
+                                <th>Orden de Compra</th>
+                                <th>Proveedor</th>
+                                <th>SL</th>
+                                <th>QTY</th>
+                                <th>Estatus</th>
+                            </tr>
+                        </thead>
+                        <tbody id="filtered-data">
+                            {% for row in excel_data %}
+                            <tr>
+                                <td>{{ row['Trailer_List'] }}</td>
+                                <td>{{ row['Factura_List'] }}</td>
+                                <td>{{ row['Orden_Compra_List'] }}</td>
+                                <td>{{ row['Proveedor_List'] }}</td>
+                                <td>{{ row['Ref_SL_List'] }}</td>
+                                <td>{{ row['Qty_List'] }}</td>
+                                <td>{{ row['Estatus_List'] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <img src="{{ url_for('static', filename='images/scaner.png') }}" alt="Scanner" class="image-scanner">
+                <h2>Escanea el SL y Confirma las facturas</h2>
+                <div class="scan-section">
+                    <div class="scan-field">
+                        <label>Proveedor:</label>
+                        <p id="proveedor-field" class="scan-value"></p>
+                    </div>
+                    <div class="scan-field">
+                        <label>SL:</label>
+                        <p id="sl-field" class="scan-value"></p>
+                    </div>
+                    <div class="scan-field">
+                        <label>Orden de Compra:</label>
+                        <p id="orden-compra-field" class="scan-value"></p>
+                    </div>
+                    <h3>Items a Escanear</h3>
+                    <div class="table-container">
+                        <table class="scan-table">
+                            <thead>
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Qty</th>
+                                    <th>OrdenCompra</th>
+                                    <th>QR</th>
+                                    <th>Evidencia</th>
+                                </tr>
+                            </thead>
+                            <tbody id="expanded-items">
+                                <!-- Aquí se llenarán los datos dinámicos -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Contenedor para el escáner QR -->
+        <div id="qr-reader" style="display: none; position: fixed; top: 10%; left: 25%; width: 50%; height: 50%; background: rgba(0, 0, 0, 0.8); z-index: 1000;">
+            <video id="qr-reader-container" style="width: 100%; height: 100%;" autoplay></video>
+            <button id="close-qr-reader" style="position: absolute; top: 10px; right: 10px; background: red; color: white; border: none; padding: 10px; cursor: pointer;">Cerrar</button>
+        </div>
+    </div>
+</body>
+</html>

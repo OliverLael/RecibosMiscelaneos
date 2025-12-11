@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escaneos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Codigos_escaneados.css') }}">
+    <style>
+        /* Estilos adicionales para la visualización de imágenes */
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            transition: transform 0.2s;
+        }
+        
+        .thumbnail:hover {
+            transform: scale(1.1);
+            border-color: #4CAF50;
+        }
+
+        /* Modal para ver imagen completa */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #bbb;
+        }
+
+        .no-foto {
+            color: #999;
+            font-style: italic;
+        }
+
+        .btn-ver-foto {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-ver-foto:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Escaneos Realizados</h1>
+            <a href="{{ url_for('Validacion_Miscelaneos') }}"><button class="btn-back">Regresar</button></a>
+        </header>
+        <main class="main-content">
+            <form action="{{ url_for('eliminar_escaneos') }}" method="POST">
+                <table class="misc-table">
+                    <thead>
+                        <tr>
+                            <th>Seleccionar</th>
+                            <th>SL</th>
+                            <th>Qty</th>
+                            <th>Estatus</th>
+                            <th>Fecha/Hora Escaneo</th>
+                            <th>Foto Evidencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for escaneo in escaneos %}
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="ids[]" value="{{ escaneo[0] }}">
+                            </td>
+                            <td>{{ escaneo[1] }}</td> <!-- SL -->
+                            <td>{{ escaneo[2] }}</td> <!-- Qty -->
+                            <td>{{ escaneo[3] }}</td> <!-- Estatus -->
+                            <td>{{ escaneo[4] }}</td> <!-- Fecha_hora_escaneo -->
+                            <td>
+                                {% if escaneo[5] and escaneo[5] != '' %}
+                                    {% set foto_path = 'uploads/fotos_evidencia/' + escaneo[5] %}
+                                    <!-- ✅ CORREGIDO: Usar data-attribute en lugar de onclick inline -->
+                                    <img src="{{ url_for('static', filename=foto_path) }}" 
+                                         alt="Evidencia" 
+                                         class="thumbnail" 
+                                         data-foto-url="{{ url_for('static', filename=foto_path) }}">
+                                {% else %}
+                                    <span class="no-foto">Sin evidencia</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" class="btn-delete">Eliminar Seleccionados</button>
+            </form>
+        </main>
+    </div>
+
+    <!-- Modal para ver imagen completa -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        // Función para abrir el modal con la imagen (ahora usando event delegation)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Event listener para las miniaturas
+            document.querySelectorAll('.thumbnail').forEach(function(thumbnail) {
+                thumbnail.addEventListener('click', function() {
+                    const imageSrc = this.getAttribute('data-foto-url');
+                    openModal(imageSrc);
+                });
+            });
+        });
+
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

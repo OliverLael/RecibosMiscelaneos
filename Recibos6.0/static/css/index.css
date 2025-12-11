@@ -1,0 +1,120 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: black; /* Cambia el fondo a negro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco con transparencia */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Ajusta la sombra para que combine con el fondo negro */
+    padding: 20px;
+    width: 400px;
+    color: white; /* Cambia el texto a blanco para que sea visible sobre el fondo negro */
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.header .logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.main-content .welcome-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #b71c1c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #8e0000;
+}
+
+.info-section {
+    margin-top: 30px;
+}
+
+.info-section h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.info-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+    font-size: 1rem;
+    color: #555;
+}
+
+.info-list li {
+    margin-bottom: 10px;
+}
+
+.footer {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Contenedor de pantalla dividida */
+.split-screen {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Sección de la imagen */
+.image-section {
+    flex: 3; /* Aumenta el tamaño de la imagen */
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sección del contenido */
+.content-section {
+    flex: 2; /* Reduce el tamaño del contenido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+}
